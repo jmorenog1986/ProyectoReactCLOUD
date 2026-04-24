@@ -15,11 +15,11 @@ function App() {
   return (
     <>
 
-    <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/users">Users</a></li>
-          <li><a href="/about">About</a></li>
+    <nav className="navbar">
+        <ul className="nav-menu">
+          <li className="nav-item"><a href="/" className="nav-link">Home</a></li>
+          <li className="nav-item"><a href="/users" className="nav-link">Users</a></li>
+          <li className="nav-item"><a href="/about" className="nav-link">About</a></li>
         </ul>
     </nav>
 

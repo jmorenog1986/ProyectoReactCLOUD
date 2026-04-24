@@ -1,8 +1,4 @@
-name: Setup Node.js
-  uses: actions/setup-node@v3
-    with:
-      node-version: '20'   # ← cambiar 18 por 20
-      cache: 'npm'
+name: Deploy React to AWS S3
 
 on:
   push:
@@ -20,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
 
       - name: Instalar dependencias

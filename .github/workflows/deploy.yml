@@ -1,0 +1,12 @@
+- name: Build de producción
+        run: npm run build
+
+      - name: Deploy a S3
+        run: |
+          aws s3 sync ./dist s3://${{ secrets.AWS_S3_BUCKET }} \   # ← dist, no build
+            --delete \
+            --cache-control "max-age=31536000,public" \
+            --exclude "index.html"
+          
+          aws s3 cp ./dist/index.html s3://${{ secrets.AWS_S3_BUCKET }}/index.html \
+            --cache-control "no-cache,no-store,must-revalidate"

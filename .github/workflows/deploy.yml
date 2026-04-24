@@ -1,12 +1,43 @@
-- name: Build de producción
+name: Deploy React to AWS S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Build de producción
         run: npm run build
+
+      - name: Configurar credenciales AWS
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy a S3
         run: |
-          aws s3 sync ./dist s3://${{ secrets.AWS_S3_BUCKET }} \   # ← dist, no build
+          aws s3 sync ./dist s3://${{ secrets.AWS_S3_BUCKET }} \
             --delete \
             --cache-control "max-age=31536000,public" \
             --exclude "index.html"
-          
+
           aws s3 cp ./dist/index.html s3://${{ secrets.AWS_S3_BUCKET }}/index.html \
             --cache-control "no-cache,no-store,must-revalidate"

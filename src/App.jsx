@@ -17,11 +17,13 @@ function App() {
 
       <h1>Mondongo Project</h1>
       <div className="card">
-             
+        
         <UsersPage></UsersPage>
         
       </div>
-      
+      <div className="card">
+        <p><Pruebas></Pruebas></p>
+      </div>
     </>
   )
 }

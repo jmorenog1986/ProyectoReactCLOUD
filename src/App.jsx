@@ -17,11 +17,8 @@ function App() {
 
       <h1>Mondongo Project</h1>
       <div className="card">
-      <h2>Crear usua</h2>
-        
+             
         <UsersPage></UsersPage>
-
-  
         
       </div>
       

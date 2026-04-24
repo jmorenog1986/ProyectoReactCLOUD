@@ -87,7 +87,7 @@ const handleSubmit = async (e) => {
         {/*<Button type="submit" variant="primary">Registrar usuario</Button>*/}
 
         <Button type="submit" variant="primary" disabled={loading}>
-          {loading ? 'Enviando...' : '{Registrar usuario'}
+          {loading ? 'Enviando...' : 'Registrar usuario'}
         </Button>
       </div>
     </form>
